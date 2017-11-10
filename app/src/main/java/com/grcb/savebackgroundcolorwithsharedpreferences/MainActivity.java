@@ -3,14 +3,12 @@ package com.grcb.savebackgroundcolorwithsharedpreferences;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -35,9 +33,9 @@ public class MainActivity extends Activity {
         buttonSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (radioGroupColors.getCheckedRadioButtonId() == -1){
-                    Toast.makeText(MainActivity.this,"Selecione uma cor",Toast.LENGTH_SHORT).show();
-                }else{
+                if (radioGroupColors.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(MainActivity.this, "Selecione uma cor", Toast.LENGTH_SHORT).show();
+                } else {
                     radioButtonSelected = findViewById(radioGroupColors.getCheckedRadioButtonId());
                     String color = radioButtonSelected.getText().toString();
                     saveColorPreference(color);
@@ -47,7 +45,7 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void saveColorPreference(String color){
+    private void saveColorPreference(String color) {
         SharedPreferences sharedPreferences = getSharedPreferences(COLOR_PREFERENCE, 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -55,16 +53,16 @@ public class MainActivity extends Activity {
         editor.commit();
     }
 
-    private void restoreColorPreference(){
+    private void restoreColorPreference() {
         SharedPreferences sharedPreferences = getSharedPreferences(COLOR_PREFERENCE, 0);
 
-        if (sharedPreferences.contains("color")){
+        if (sharedPreferences.contains("color")) {
             setBackground(sharedPreferences.getString("color", "#FFFFFFFF"));
         }
     }
 
     private void setBackground(String color) {
-        switch (color){
+        switch (color) {
             case "Vermelho":
                 constraintLayout.setBackgroundColor(Color.parseColor("#FFFF0000"));
                 break;
@@ -78,7 +76,7 @@ public class MainActivity extends Activity {
                 constraintLayout.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
                 break;
             default:
-                Toast.makeText(MainActivity.this, "Erro: Valor RGB inválido",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Erro: Valor RGB inválido", Toast.LENGTH_SHORT).show();
                 break;
         }
 
